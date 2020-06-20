@@ -35,7 +35,10 @@ if (!taskNameInput || !taskTypeInput) {
     taskInfoEl.className = "task-info";
     taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
     listItemEl.appendChild(taskInfoEl);
-  
+
+    var taskActionsEl = createTaskActions(taskIdCounter);
+    listItemEl.appendChild(taskActionsEl);
+    
     tasksToDoEl.appendChild(listItemEl);
   
     // increase task counter for next unique id
@@ -67,8 +70,18 @@ statusSelectEl.setAttribute("name", "status-change");
 statusSelectEl.setAttribute("data-task-id", taskId);
 
 actionContainerEl.appendChild(statusSelectEl);
+
+var statusChoices = ["To Do", "In Progress", "Completed"];
+for (var i = 0; i < statusChoices.length; i++) {
+  // creat option element
+  var statusOptionEl = document.createElement("option");
+  statusOptionEl.textContent = statusChoices[i];
+  statusOptionEl.setAttribute("value", statusChoices[i]);
+
+  // append to select
+  statusSelectEl.appendChild(statusOptionEl);
+}
 return actionContainerEl;
   };
 
-
-  formEl.addEventListener("submit", taskFormHandler);
+formEl.addEventListener("submit", taskFormHandler);
