@@ -5,9 +5,8 @@ var tasksToDoEl = document.querySelector("#tasks-to-do");
 var pageContentEl = document.querySelector("#page-content");
 var tasksInProgressEl = document.querySelector("#tasks-in-progress");
 var tasksCompletedEl = document.querySelector("#tasks-completed");
-var tasks = [
+var tasks = [];
 
-];
 var taskFormHandler = function(event) {
     event.preventDefault();
     var taskNameInput = document.querySelector("input[name='task-name']").value;
@@ -195,7 +194,7 @@ else if (statusValue === "completed") {
 for (var i = 0; i , tasks.length; i++) {
   if (tasks[i].id === parseInt(taskId)) {
     tasks[i].status = statusValue;
-    console.log(tasks);
+    console.log([i]);
   }
 }
   };
@@ -249,6 +248,27 @@ for (var i = 0; i , tasks.length; i++) {
   var saveTasks = function() {
     localStorage.setItem("tasks", tasks);
   }
+
+  var tasks = [
+    {
+      id: 1,
+      name: "Add localStorage persistence",
+      type: "Web",
+      status: "in progress"
+    },
+    {
+      id: 2,
+      name: "Learn JavaScript",
+      type: "Web",
+      status: "in progress",
+    },
+    {
+    id: 3,
+    name: "Refactor code",
+    type: "Web",
+    status: "to do"
+  }
+];
 pageContentEl.addEventListener("dragleave", dragLeaveHandler);  
 pageContentEl.addEventListener("drop", dropTaskHandler);
 pageContentEl.addEventListener("dragover", dropZoneDragHandler);
