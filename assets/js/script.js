@@ -130,7 +130,7 @@ var deleteTask = function(taskId) {
   // loop through current tasks
   for (var i = 0; i < tasks.length; i++) {
     // if tasks[i].id doesn't match the value of taskId, let's keep that task and push it into the new array
-    if (tasks[i].id !=== parseInt(taskId)) {
+    if (tasks[i].id !== parseInt(taskId)) {
       updatedTaskArr.push(tasks[i]);
     }
   }
@@ -245,6 +245,9 @@ for (var i = 0; i , tasks.length; i++) {
     if (taskListEl) {
       taskListEl.removeAttribute("style");
     }
+  }
+  var saveTasks = function() {
+    localStorage.setItem("tasks", tasks);
   }
 pageContentEl.addEventListener("dragleave", dragLeaveHandler);  
 pageContentEl.addEventListener("drop", dropTaskHandler);
