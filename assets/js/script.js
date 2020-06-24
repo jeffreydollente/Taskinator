@@ -39,6 +39,8 @@ else {
 
   tasks.push(taskDataObj);
 
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
   console.log(taskDataObj);
   console.log(taskDataObj.status);
 }
@@ -135,6 +137,8 @@ var deleteTask = function(taskId) {
   }
   // reassign tasks array to be the same as updatedTaskArr
   tasks = updatedTaskArr;
+  // saves tasks in localStorage
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
 var editTask = function(taskId) {
@@ -166,6 +170,7 @@ var completeEditTask = function(taskName, taskType, taskId) {
       tasks[i].name = taskName;
       tasks[i].type = taskType;
     }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
   
   alert("Task Updated!");
@@ -191,12 +196,13 @@ else if (statusValue === "completed") {
   tasksCompletedEl.appendChild(taskSelected);
 }
 // update task's in tasks array
-for (var i = 0; i , tasks.length; i++) {
+for (var i = 0; i < tasks.length; i++) {
   if (tasks[i].id === parseInt(taskId)) {
     tasks[i].status = statusValue;
-    console.log([i]);
+    console.log([tasks]);
   }
 }
+localStorage.setItem("tasks", JSON.stringify(tasks));
   };
   var dragTaskHandler = function(event) {
     var taskId = event.target.getAttribute("data-task-id");
@@ -228,6 +234,10 @@ for (var i = 0; i , tasks.length; i++) {
           tasks[i].status = statusSelectEl.value.toLowerCase();
         }
       }
+
+        // saves tasks in localStorage
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+
       console.log(tasks);
   };
 
@@ -244,9 +254,6 @@ for (var i = 0; i , tasks.length; i++) {
     if (taskListEl) {
       taskListEl.removeAttribute("style");
     }
-  }
-  var saveTasks = function() {
-    localStorage.setItem("tasks", tasks);
   }
 
   var tasks = [
@@ -269,6 +276,10 @@ for (var i = 0; i , tasks.length; i++) {
     status: "to do"
   }
 ];
+var saveTasks = function() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
 pageContentEl.addEventListener("dragleave", dragLeaveHandler);  
 pageContentEl.addEventListener("drop", dropTaskHandler);
 pageContentEl.addEventListener("dragover", dropZoneDragHandler);
